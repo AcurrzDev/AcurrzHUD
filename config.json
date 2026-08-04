@@ -1,0 +1,9 @@
+{
+    "accentColor": "#1c7cff",
+    "background": "#060606",
+    "glowStrength": 16,
+    "splitHeight": 42,
+    "splitSpacing": 3,
+    "animationSpeed": 300,
+    "font": "Segoe UI"
+}

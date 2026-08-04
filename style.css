@@ -1,0 +1,500 @@
+/*==================================================
+                    ACURRZ HUD
+                  Version 1.0 Alpha
+==================================================*/
+
+:root{
+
+    --bg:#060606;
+
+    --panel:#0a0a0a;
+
+    --panel2:#111111;
+
+    --border:#1b1b1b;
+
+    --accent:#1d84ff;
+
+    --accentBright:#4ca8ff;
+
+    --text:#ececec;
+
+    --textDim:#9e9e9e;
+
+    --gold:#ffd54a;
+
+    --negative:#ff6262;
+
+    --positive:#49c87d;
+
+    --shadow:
+        0 0 4px rgba(29,132,255,.25),
+        0 0 12px rgba(29,132,255,.18);
+
+}
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    user-select:none;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+}
+
+html{
+
+    width:100%;
+
+    height:100%;
+
+}
+
+body{
+
+    width:100%;
+
+    height:100%;
+
+    overflow:hidden;
+
+    background:transparent;
+
+    color:var(--text);
+
+}
+
+/*==================================================
+                MAIN PANEL
+==================================================*/
+
+#hud{
+
+    width:360px;
+
+    height:100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(20,20,20,.96),
+            rgba(5,5,5,.97)
+        );
+
+    border-right:1px solid rgba(29,132,255,.18);
+
+    box-shadow:
+
+        inset 0 0 80px rgba(255,255,255,.02),
+
+        inset 0 0 30px rgba(29,132,255,.04),
+
+        0 0 20px rgba(0,0,0,.45);
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/*==================================================
+                    HEADER
+==================================================*/
+
+#header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:
+
+        18px
+
+        18px
+
+        14px
+
+        18px;
+
+    border-bottom:
+
+        1px solid
+
+        rgba(255,255,255,.05);
+
+}
+
+#comparison{
+
+    color:var(--accent);
+
+    font-size:17px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+#comparisonTime{
+
+    color:var(--accentBright);
+
+    font-size:17px;
+
+    font-weight:700;
+
+    text-shadow:var(--shadow);
+
+}
+
+/*==================================================
+                SPLIT LIST
+==================================================*/
+
+#splitContainer{
+
+    flex:1;
+
+    overflow:hidden;
+
+    padding:
+
+        10px
+
+        8px;
+
+}
+
+/* Every split becomes a card */
+
+.split{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    height:46px;
+
+    margin-bottom:4px;
+
+    padding:
+
+        0
+
+        12px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(255,255,255,.015),
+
+            rgba(255,255,255,0)
+
+        );
+
+    border-left:2px solid transparent;
+
+    border-bottom:
+
+        1px solid
+
+        rgba(255,255,255,.05);
+
+    transition:
+
+        background .25s,
+
+        border .25s,
+
+        transform .25s,
+
+        box-shadow .25s;
+
+}
+
+.split:hover{
+
+    background:
+
+        rgba(255,255,255,.03);
+
+}
+
+.split.current{
+
+    border-left:
+
+        3px solid
+
+        var(--accent);
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            rgba(29,132,255,.12),
+
+            rgba(29,132,255,0)
+
+        );
+
+    box-shadow:var(--shadow);
+
+}
+
+.split.gold{
+
+    border-left:
+
+        3px solid
+
+        var(--gold);
+
+}
+
+.split.complete{
+
+    opacity:.72;
+
+}
+
+/*==================================================
+                SPLIT CONTENT
+==================================================*/
+
+.splitLeft{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.splitIcon{
+
+    width:22px;
+
+    text-align:center;
+
+    color:#bcbcbc;
+
+    opacity:.85;
+
+}
+
+.splitName{
+
+    font-size:15px;
+
+    letter-spacing:.5px;
+
+}
+
+.splitDelta{
+
+    font-weight:700;
+
+    color:var(--textDim);
+
+}
+
+/*==================================================
+                    TIMER
+==================================================*/
+
+#timerPanel{
+
+    padding:
+
+        18px;
+
+    border-top:
+
+        1px solid
+
+        rgba(255,255,255,.06);
+
+}
+
+#timer{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    margin-bottom:20px;
+
+}
+
+#minutes{
+
+    font-size:72px;
+
+    font-weight:800;
+
+    color:var(--accent);
+
+    line-height:1;
+
+    text-shadow:var(--shadow);
+
+}
+
+#milliseconds{
+
+    font-size:36px;
+
+    margin-bottom:9px;
+
+    color:var(--accentBright);
+
+    text-shadow:var(--shadow);
+
+}
+
+/*==================================================
+                PB / BEST
+==================================================*/
+
+.statRow{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:10px;
+
+    color:var(--textDim);
+
+    font-size:15px;
+
+}
+
+.statRow span:last-child{
+
+    color:white;
+
+}
+
+/*==================================================
+            PREVIOUS / TIME SAVE
+==================================================*/
+
+#bottomStats{
+
+    padding:
+
+        16px
+
+        18px
+
+        20px;
+
+}
+
+.bottomDivider{
+
+    height:1px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(29,132,255,.45),
+
+            transparent
+
+        );
+
+    margin:
+
+        16px
+
+        0;
+
+}
+
+.bottomTitle{
+
+    font-size:13px;
+
+    color:var(--textDim);
+
+    letter-spacing:1px;
+
+    margin-bottom:6px;
+
+}
+
+#previousSegment,
+
+#timeSave{
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.positive{
+
+    color:var(--positive);
+
+}
+
+.negative{
+
+    color:var(--negative);
+
+}
+
+.goldText{
+
+    color:var(--gold);
+
+}
+
+/*==================================================
+            SCROLLBAR
+==================================================*/
+
+::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:
+
+        rgba(29,132,255,.35);
+
+}

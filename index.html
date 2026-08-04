@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>AcurrzHUD</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="hud">
+
+    <div id="header">
+
+        <div id="comparison">SUM OF BEST</div>
+
+        <div id="comparisonTime">--:--.--</div>
+    </div>
+
+    <div id="splitContainer">
+
+    </div>
+
+    <div id="timerPanel">
+
+        <div id="timer">
+
+            <span id="minutes">0:00</span>
+
+            <span id="milliseconds">.00</span>
+
+        </div>
+
+        <div class="statRow">
+
+            <span>PB</span>
+
+            <span id="pbTime">--</span>
+
+        </div>
+
+        <div class="statRow">
+
+            <span>BEST</span>
+
+            <span id="bestPossible">--</span>
+
+        </div>
+
+    </div>
+
+    <div id="bottomStats">
+
+        <div class="bottomItem">
+
+            <div class="bottomTitle">
+                PREVIOUS SEGMENT
+            </div>
+
+            <div id="previousSegment">
+                --
+            </div>
+
+        </div>
+
+        <div class="bottomDivider"></div>
+
+        <div class="bottomItem">
+
+            <div class="bottomTitle">
+                POSSIBLE TIME SAVE
+            </div>
+
+            <div id="timeSave">
+                --
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/websocket.js"></script>
+<script src="js/livesplit.js"></script>
+<script src="js/splits.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
