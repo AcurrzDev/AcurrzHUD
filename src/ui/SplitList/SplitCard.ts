@@ -3,7 +3,7 @@ import "./SplitCard.css";
 import { Component } from "../Component";
 
 /**
- * Individual split entry.
+ * Single split row.
  */
 export class SplitCard extends Component<HTMLDivElement> {
 
@@ -41,48 +41,15 @@ export class SplitCard extends Component<HTMLDivElement> {
 
     }
 
-    public setName(name: string): void {
-
-        this.name.textContent = name;
-
-    }
-
-    public setDelta(delta: string): void {
-
-        this.delta.textContent = delta;
-
-    }
-
+    /**
+     * Highlights the active split.
+     */
     public setCurrent(current: boolean): void {
 
         this.element.classList.toggle(
             "current",
             current
         );
-
-    }
-
-    public setAhead(): void {
-
-        this.delta.className = "split-delta ahead";
-
-    }
-
-    public setBehind(): void {
-
-        this.delta.className = "split-delta behind";
-
-    }
-
-    public setGold(): void {
-
-        this.delta.className = "split-delta gold";
-
-    }
-
-    public clearState(): void {
-
-        this.delta.className = "split-delta";
 
     }
 

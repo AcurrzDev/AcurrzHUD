@@ -27,8 +27,6 @@ export class SplitList extends Component<HTMLDivElement> {
      */
     public render(): void {
 
-        // Rendering is handled by setSplits().
-        // This simply gives us an initial empty list.
         this.setSplits([]);
 
     }
