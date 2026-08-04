@@ -3,6 +3,8 @@ import "./HUD.css";
 import { Component } from "../Component";
 import { Header } from "../Header/Header";
 import { Panel } from "../Panel/Panel";
+import { Timer } from "../Timer/Timer";
+import { SplitList } from "../SplitList/SplitList";
 
 /**
  * Root HUD component.
@@ -10,9 +12,16 @@ import { Panel } from "../Panel/Panel";
 export class HUD extends Component<HTMLDivElement> {
 
     private readonly header: Header;
+
     private readonly splitPanel: Panel;
+
     private readonly timerPanel: Panel;
+
     private readonly footerPanel: Panel;
+
+    private readonly timer: Timer;
+
+    private readonly splitList: SplitList;
 
     public constructor() {
 
@@ -30,6 +39,18 @@ export class HUD extends Component<HTMLDivElement> {
 
         this.footerPanel = new Panel();
         this.footerPanel.element.classList.add("footer-panel");
+
+        this.timer = new Timer();
+
+        this.timer.setTime("0:00.00");
+        this.timer.setPersonalBest("28:14.56");
+        this.timer.setBestPossible("27:58.31");
+
+        this.splitList = new SplitList();
+
+        this.splitPanel.setContent(this.splitList.element);
+
+        this.timerPanel.setContent(this.timer.element);
 
         this.render();
 
