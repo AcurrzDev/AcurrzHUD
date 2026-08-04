@@ -1,69 +1,81 @@
-.split-card{
+.split-card {
 
-    display:flex;
+    display: flex;
 
-    justify-content:space-between;
+    align-items: center;
 
-    align-items:center;
+    justify-content: space-between;
 
-    padding:10px 14px;
+    height: 42px;
 
-    border-radius:6px;
+    padding: 0 14px;
+
+    border-radius: 4px;
 
     transition:
-
-        background .18s,
-
-        transform .18s,
-
-        border-color .18s;
-
-    border-left:4px solid transparent;
+        background .20s ease,
+        box-shadow .20s ease;
 
 }
 
-.split-card + .split-card{
-
-    margin-top:4px;
-
-}
-
-.split-name{
-
-    color:#ececec;
-
-    font-size:15px;
-
-    font-weight:500;
-
-}
-
-.split-delta{
-
-    color:#888;
-
-    font-weight:700;
-
-}
-
-.current{
+.split-card.current {
 
     background:
+        linear-gradient(
+            90deg,
+            rgba(45,140,255,.20),
+            transparent
+        );
 
-        rgba(45,140,255,.10);
-
-    border-left-color:#2d8cff;
-
-}
-
-.ahead{
-
-    color:#27d36b;
+    box-shadow:
+        inset 3px 0 var(--accent);
 
 }
 
-.behind{
+.split-name {
 
-    color:#ff6464;
+    flex: 1;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    color: var(--text);
+
+    font-size: 16px;
+
+}
+
+.split-delta {
+
+    margin-left: 12px;
+
+    min-width: 56px;
+
+    text-align: right;
+
+    font-weight: 700;
+
+    color: var(--text);
+
+}
+
+.split-delta.ahead {
+
+    color: #45d36b;
+
+}
+
+.split-delta.behind {
+
+    color: #ff6464;
+
+}
+
+.split-delta.gold {
+
+    color: #ffd54f;
 
 }

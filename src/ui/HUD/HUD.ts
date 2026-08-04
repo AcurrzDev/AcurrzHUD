@@ -42,15 +42,28 @@ export class HUD extends Component<HTMLDivElement> {
 
         this.timer = new Timer();
 
-        this.timer.setTime("0:00.00");
-        this.timer.setPersonalBest("28:14.56");
-        this.timer.setBestPossible("27:58.31");
-
         this.splitList = new SplitList();
 
-        this.splitPanel.setContent(this.splitList.element);
+        // Default placeholder splits until LiveSplit provides them.
+        this.splitList.setSplits([
+            "Mumbo's Mountain",
+            "Treasure Trove Cove",
+            "Clanker's Cavern",
+            "Bubblegloop Swamp",
+            "Freezeezy Peak",
+            "Gobi's Valley",
+            "Mad Monster Mansion",
+            "Rusty Bucket Bay",
+            "Click Clock Wood"
+        ]);
 
-        this.timerPanel.setContent(this.timer.element);
+        this.splitPanel.setContent(
+            this.splitList.element
+        );
+
+        this.timerPanel.setContent(
+            this.timer.element
+        );
 
         this.render();
 
@@ -71,5 +84,59 @@ export class HUD extends Component<HTMLDivElement> {
         );
 
     }
+
+    /**
+     * Updates the main timer.
+     */
+    public setCurrentTime(time: string): void {
+
+        this.timer.setTime(time);
+
+    }
+
+    /**
+     * Updates the Best Possible Time.
+     */
+    public setBestPossible(time: string): void {
+
+        this.timer.setBestPossible(time);
+
+    }
+
+    /**
+     * Updates the Personal Best.
+     */
+    public setPersonalBest(time: string): void {
+
+        this.timer.setPersonalBest(time);
+
+    }
+
+    /**
+     * Replaces the displayed split list.
+     */
+    public setSplits(names: readonly string[]): void {
+
+        this.splitList.setSplits(names);
+
+    }
+
+    /**
+     * Highlights the current split.
+     */
+    public setCurrentSplit(index: number): void {
+
+        this.splitList.setCurrentSplit(index);
+
+    }
+
+    /**
+ * Updates the header split name.
+ */
+public setCurrentSplitName(name: string): void {
+
+    this.header.setCurrentSplitName(name);
+
+}
 
 }

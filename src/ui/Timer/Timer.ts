@@ -3,119 +3,103 @@ import "./Timer.css";
 import { Component } from "../Component";
 
 /**
- * Primary run timer widget.
- *
- * This widget is responsible only for displaying
- * timing information. It has no knowledge of
- * LiveSplit or networking.
+ * Main run timer widget.
  */
 export class Timer extends Component<HTMLDivElement> {
+    private readonly mainTime: HTMLDivElement;
 
-    private readonly timeElement: HTMLDivElement;
+    private readonly milliseconds: HTMLSpanElement;
 
-    private readonly millisecondsElement: HTMLSpanElement;
+    private readonly pbValue: HTMLSpanElement;
 
-    private readonly personalBestValue: HTMLSpanElement;
-
-    private readonly bestPossibleValue: HTMLSpanElement;
+    private readonly bestValue: HTMLSpanElement;
 
     public constructor() {
-
         super(document.createElement("div"));
 
         this.element.className = "timer";
 
-        const timerContainer = document.createElement("div");
-        timerContainer.className = "timer-display";
+        const display = document.createElement("div");
+        display.className = "timer-display";
 
-        this.timeElement = document.createElement("div");
-        this.timeElement.className = "timer-main";
-        this.timeElement.textContent = "0:00";
+        this.mainTime = document.createElement("div");
+        this.mainTime.className = "timer-main";
+        this.mainTime.textContent = "0:00";
 
-        this.millisecondsElement = document.createElement("span");
-        this.millisecondsElement.className = "timer-ms";
-        this.millisecondsElement.textContent = ".00";
+        this.milliseconds = document.createElement("span");
+        this.milliseconds.className = "timer-ms";
+        this.milliseconds.textContent = ".00";
 
-        timerContainer.append(
-            this.timeElement,
-            this.millisecondsElement
-        );
+        display.append(this.mainTime, this.milliseconds);
 
-        const personalBestRow = document.createElement("div");
-        personalBestRow.className = "timer-row";
+        const divider = document.createElement("div");
+        divider.className = "timer-divider";
 
-        const personalBestLabel = document.createElement("span");
-        personalBestLabel.textContent = "PB";
+        const pbRow = document.createElement("div");
+        pbRow.className = "timer-row";
 
-        this.personalBestValue = document.createElement("span");
-        this.personalBestValue.textContent = "--";
+        const pbLabel = document.createElement("span");
+        pbLabel.textContent = "PB";
 
-        personalBestRow.append(
-            personalBestLabel,
-            this.personalBestValue
-        );
+        this.pbValue = document.createElement("span");
+        this.pbValue.textContent = "--";
 
-        const bestPossibleRow = document.createElement("div");
-        bestPossibleRow.className = "timer-row";
+        pbRow.append(pbLabel, this.pbValue);
 
-        const bestPossibleLabel = document.createElement("span");
-        bestPossibleLabel.textContent = "BEST";
+        const bestRow = document.createElement("div");
+        bestRow.className = "timer-row";
 
-        this.bestPossibleValue = document.createElement("span");
-        this.bestPossibleValue.textContent = "--";
+        const bestLabel = document.createElement("span");
+        bestLabel.textContent = "BEST";
 
-        bestPossibleRow.append(
-            bestPossibleLabel,
-            this.bestPossibleValue
-        );
+        this.bestValue = document.createElement("span");
+        this.bestValue.textContent = "--";
 
-        this.element.append(
-            timerContainer,
-            personalBestRow,
-            bestPossibleRow
-        );
+        bestRow.append(bestLabel, this.bestValue);
 
-        this.render();
-
+        this.element.append(display, divider, pbRow, bestRow);
     }
 
-    public render(): void {
-
-        // Static widget.
-        // Dynamic updates happen through setters.
-
-    }
+    public render(): void {}
 
     /**
      * Updates the displayed timer.
      */
     public setTime(time: string): void {
+        const split = time.trim().split(".");
 
-        const split = time.split(".");
+        this.mainTime.textContent = split[0];
 
-        this.timeElement.textContent = split[0];
+        const milliseconds = (split[1] ?? "00").padEnd(2, "0").substring(0, 2);
 
-        this.millisecondsElement.textContent =
-            "." + (split[1] ?? "00");
-
+        this.milliseconds.textContent = "." + milliseconds;
     }
 
-    /**
-     * Updates the personal best.
-     */
-    public setPersonalBest(value: string): void {
+    public setPersonalBest(time: string): void {
 
-        this.personalBestValue.textContent = value;
+    const split = time.trim().split(".");
 
-    }
+    const milliseconds =
+        (split[1] ?? "00")
+            .padEnd(2, "0")
+            .substring(0, 2);
 
-    /**
-     * Updates the best possible time.
-     */
-    public setBestPossible(value: string): void {
+    this.pbValue.textContent =
+        split[0] + "." + milliseconds;
 
-        this.bestPossibleValue.textContent = value;
+}
 
-    }
+    public setBestPossible(time: string): void {
 
+    const split = time.trim().split(".");
+
+    const milliseconds =
+        (split[1] ?? "00")
+            .padEnd(2, "0")
+            .substring(0, 2);
+
+    this.bestValue.textContent =
+        split[0] + "." + milliseconds;
+
+}
 }

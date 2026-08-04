@@ -7,8 +7,9 @@ import { Component } from "../Component";
  */
 export class Header extends Component<HTMLDivElement> {
 
+    private readonly label: HTMLSpanElement;
+
     private readonly title: HTMLSpanElement;
-    private readonly comparison: HTMLSpanElement;
 
     public constructor() {
 
@@ -16,13 +17,13 @@ export class Header extends Component<HTMLDivElement> {
 
         this.element.className = "header";
 
+        this.label = document.createElement("span");
+        this.label.className = "header-label";
+        this.label.textContent = "CURRENT SPLIT";
+
         this.title = document.createElement("span");
         this.title.className = "header-title";
-        this.title.textContent = "SUM OF BEST";
-
-        this.comparison = document.createElement("span");
-        this.comparison.className = "header-time";
-        this.comparison.textContent = "28:00.01";
+        this.title.textContent = "Waiting for Run";
 
         this.render();
 
@@ -31,15 +32,29 @@ export class Header extends Component<HTMLDivElement> {
     public render(): void {
 
         this.element.replaceChildren(
-            this.title,
-            this.comparison
+
+            this.label,
+
+            this.title
+
         );
 
     }
 
-    public setComparison(time: string): void {
+    /**
+     * Updates the displayed split name.
+     */
+    public setCurrentSplitName(name: string): void {
 
-        this.comparison.textContent = time;
+        if (!name || name === "-") {
+
+            this.title.textContent = "Waiting for Run";
+
+            return;
+
+        }
+
+        this.title.textContent = name;
 
     }
 

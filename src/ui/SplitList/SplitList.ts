@@ -16,39 +16,52 @@ export class SplitList extends Component<HTMLDivElement> {
 
         this.element.className = "split-list";
 
+        this.element.style.flex = "1";
+
         this.render();
 
     }
 
+    /**
+     * Required by Component.
+     */
     public render(): void {
 
-        const names = [
+        // Rendering is handled by setSplits().
+        // This simply gives us an initial empty list.
+        this.setSplits([]);
 
-            "Mumbo's Mountain",
-            "Treasure Trove Cove",
-            "Clanker's Cavern",
-            "Bubblegloop Swamp",
-            "Freezeezy Peak",
-            "Gobi's Valley",
-            "Mad Monster Mansion",
-            "Rusty Bucket Bay",
-            "Click Clock Wood"
+    }
 
-        ];
+    /**
+     * Rebuilds the split list.
+     */
+    public setSplits(names: readonly string[]): void {
 
-        names.forEach((name, index) => {
+        this.cards.length = 0;
+
+        this.element.replaceChildren();
+
+        for (const name of names) {
 
             const card = new SplitCard(name);
-
-            if(index === 0){
-
-                card.setCurrent(true);
-
-            }
 
             this.cards.push(card);
 
             this.element.appendChild(card.element);
+
+        }
+
+    }
+
+    /**
+     * Highlights the active split.
+     */
+    public setCurrentSplit(index: number): void {
+
+        this.cards.forEach((card, i) => {
+
+            card.setCurrent(i === index);
 
         });
 

@@ -3,15 +3,13 @@ import "./SplitCard.css";
 import { Component } from "../Component";
 
 /**
- * Represents a single split in the HUD.
+ * Individual split entry.
  */
 export class SplitCard extends Component<HTMLDivElement> {
 
-    private readonly nameElement: HTMLSpanElement;
+    private readonly name: HTMLSpanElement;
 
-    private readonly deltaElement: HTMLSpanElement;
-
-    private current = false;
+    private readonly delta: HTMLSpanElement;
 
     public constructor(name: string) {
 
@@ -19,34 +17,43 @@ export class SplitCard extends Component<HTMLDivElement> {
 
         this.element.className = "split-card";
 
-        this.nameElement = document.createElement("span");
-        this.nameElement.className = "split-name";
-        this.nameElement.textContent = name;
+        this.name = document.createElement("span");
+        this.name.className = "split-name";
+        this.name.textContent = name;
 
-        this.deltaElement = document.createElement("span");
-        this.deltaElement.className = "split-delta";
-        this.deltaElement.textContent = "--";
+        this.delta = document.createElement("span");
+        this.delta.className = "split-delta";
+        this.delta.textContent = "--";
 
-        this.element.append(
-            this.nameElement,
-            this.deltaElement
-        );
+        this.render();
 
     }
 
     public render(): void {
-        // Static component.
+
+        this.element.replaceChildren(
+
+            this.name,
+
+            this.delta
+
+        );
+
+    }
+
+    public setName(name: string): void {
+
+        this.name.textContent = name;
+
     }
 
     public setDelta(delta: string): void {
 
-        this.deltaElement.textContent = delta;
+        this.delta.textContent = delta;
 
     }
 
     public setCurrent(current: boolean): void {
-
-        this.current = current;
 
         this.element.classList.toggle(
             "current",
@@ -57,15 +64,25 @@ export class SplitCard extends Component<HTMLDivElement> {
 
     public setAhead(): void {
 
-        this.deltaElement.className =
-            "split-delta ahead";
+        this.delta.className = "split-delta ahead";
 
     }
 
     public setBehind(): void {
 
-        this.deltaElement.className =
-            "split-delta behind";
+        this.delta.className = "split-delta behind";
+
+    }
+
+    public setGold(): void {
+
+        this.delta.className = "split-delta gold";
+
+    }
+
+    public clearState(): void {
+
+        this.delta.className = "split-delta";
 
     }
 

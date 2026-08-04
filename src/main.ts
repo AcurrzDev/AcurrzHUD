@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { App } from "./core/App";
+import { App } from "./core/App.ts";
 
 const app = new App();
 
